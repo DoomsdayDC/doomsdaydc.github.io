@@ -1,177 +1,240 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="zh-CN">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="Academic Webpage" />
-    <meta name="author" content="senli1073" />
-    <title id="title"></title>
-
-    <!-- Icon -->
-    <link rel="icon" type="image/x-icon" href="static/assets/favicon.ico" />
-
-    <!-- Bootstrap icons-->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
-
-    <!-- Google fonts-->
-    <link rel="preconnect" href="https://fonts.gstatic.com" />
-    <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,600;1,600&amp;display=swap"
-        rel="stylesheet" />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,300;0,500;0,600;0,700;1,300;1,500;1,600;1,700&amp;display=swap"
-        rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,400;1,400&amp;display=swap"
-        rel="stylesheet" />
-
-    <!-- Core theme CSS (includes Bootstrap)-->
-    <link type="text/css" href="static/css/styles.css" rel="stylesheet" />
-    <link type="text/css" href="static/css/main.css" rel="stylesheet" />
-
-    <!-- Bootstrap core JS-->
-    <script type="text/javascript" src="static/js/bootstrap.bundle.min.js"></script>
-
-    <!-- For Compatability -->
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-    
-    <!-- Markdown -->
-    <script type="text/javascript" src="static/js/marked.min.js"></script>
-
-    <!-- Mathematics -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人介绍 - 新潮作品集</title>
+    <!-- 引入 Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        // See https://docs.mathjax.org/en/latest/index.html for more details.
-        MathJax = {
-            tex: {
-                packages: {},              // extensions to use
-                inlineMath: [              // start/end delimiter pairs for in-line math
-                    ['$', '$'],
-                    ['\\(', '\\)']
-                ],
-                displayMath: [             // start/end delimiter pairs for display math
-                    ['$$', '$$'],
-                    ['\\[', '\\]']
-                ],
-                processEscapes: false,      // use \$ to produce a literal dollar sign
-                processEnvironments: true, // process \begin{xxx}...\end{xxx} outside math mode
-                processRefs: true,         // process \ref{...} outside of math mode
-                digits: /^(?:[0-9]+(?:\{,\}[0-9]{3})*(?:\.[0-9]*)?|\.[0-9]+)/,    // pattern for recognizing numbers
-                tags: 'all',              // or 'ams' or 'all'
-                tagSide: 'right',          // side for \tag macros
-                tagIndent: '0.8em',        // amount to indent tags
-                useLabelIds: true,         // use label name rather than tag for ids
-                maxMacros: 10000,          // maximum number of macro substitutions per expression
-                maxBuffer: 5 * 1024,       // maximum size for the internal TeX string (5K)
-                // baseURL:                   // URL for use with links to tags (when there is a <base> tag in effect)
-                // (document.getElementsByTagName('base').length === 0) ? '' : String(document.location).replace(/#.*$/, ''),
-                formatError:               // function called when TeX syntax errors occur
-                    (jax, err) => jax.formatError(err)
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'accent': '#06B6D4', // 青色/Teal for trendy accents
+                        'dark-bg': '#121212', // Very dark background
+                        'dark-card': '#1f1f1f', // Slightly lighter card background
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
             }
-        };
+        }
     </script>
-    <script type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
-    <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    
-    <!-- Core JS-->
-    <script type="text/javascript" src="static/js/scripts.js"></script>
-    <script type="text/javascript" src="static/js/js-yaml.min.js"></script>
-
+    <style>
+        /* 确保平滑滚动效果 */
+        html {
+            scroll-behavior: smooth;
+        }
+        /* 自定义滚动条样式 (可选，但更符合新潮风格) */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #2d2d2d;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #06b6d4;
+            border-radius: 10px;
+        }
+        /* 为所有卡片添加悬停和动画效果 */
+        .hover-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .hover-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(6, 182, 212, 0.3); /* 青色光芒 */
+        }
+        /* 突出显示的文本效果 */
+        .highlight-text {
+            background: -webkit-linear-gradient(45deg, #06b6d4, #34d399);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
 </head>
+<body class="bg-dark-bg text-gray-100 font-sans">
 
-<body id="page-top">
-    <!-- Navigation-->
-    <nav class="header navbar navbar-expand-lg navbar-light fixed-top shadow-sm" id="mainNav">
-        <div class="container px-5">
-            <a id="page-top-title" class="navbar-brand fw-bold" href="#page-top"></a>
-            <!-- <a href="#page-top"><img src="static/assets/img/CUMT_LOGO.svg" style="width: 11rem;"></a> -->
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
-                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                MENU
-                <i class="bi-list"></i>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ms-auto me-4 my-3 my-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link me-lg-3" href="#page-top">HOME</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link me-lg-3" href="#publications">PUBLICATIONS</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link me-lg-3" href="#awards">AWARDS</a>
-                    </li>
-
-                </ul>
+    <!-- 导航栏 -->
+    <nav class="sticky top-0 z-50 bg-dark-bg/90 backdrop-blur-sm shadow-lg border-b border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex justify-between items-center">
+            <a href="#hero" class="text-2xl font-bold highlight-text">
+                [您的名字]
+            </a>
+            <div class="space-x-4">
+                <a href="#education" class="text-gray-300 hover:text-accent transition duration-200">教育</a>
+                <a href="#projects" class="text-gray-300 hover:text-accent transition duration-200">项目</a>
+                <a href="#research" class="text-gray-300 hover:text-accent transition duration-200">科研</a>
+                <a href="#contact" class="text-gray-300 hover:text-accent transition duration-200">联系</a>
             </div>
         </div>
     </nav>
 
-    <!-- Top Section -->
-    <section class="top-section" style="background-image: url('static/assets/img/background.jpeg');">
-        <div class="top-section-content">
-            <div class="container px-5">
-                <h2 id="top-section-bg-text" class="text-white display-3 lh-1 font-alt"></h2>
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-24">
+
+        <!-- 1. 英雄区域 (Hero) -->
+        <section id="hero" class="pt-8 pb-12">
+            <div class="flex flex-col md:flex-row items-center justify-between">
+                <div class="md:w-3/5">
+                    <p class="text-xl text-gray-400 mb-2">你好，世界！我是</p>
+                    <h1 class="text-5xl sm:text-7xl font-extrabold leading-tight">
+                        <span class="highlight-text">未来</span>
+                        <span class="text-white">的</span>
+                        <span class="highlight-text">构建者</span>
+                    </h1>
+                    <p class="mt-6 text-2xl text-gray-300">
+                        一位专注于 <span class="text-accent font-semibold">人工智能与高性能计算</span> 的创新者与开发者。
+                        热衷于将复杂数据转化为可操作的洞察力。
+                    </p>
+                    <div class="mt-8 space-x-4">
+                        <a href="#projects" class="inline-block bg-accent text-dark-bg font-bold py-3 px-6 rounded-full hover:bg-cyan-300 transition duration-300 shadow-xl">
+                            探索我的项目
+                        </a>
+                        <a href="#" class="inline-block text-accent border border-accent py-3 px-6 rounded-full hover:bg-accent/10 transition duration-300">
+                            下载简历
+                        </a>
+                    </div>
+                </div>
+                <!-- 个人形象/占位符 -->
+                <div class="mt-10 md:mt-0 md:w-2/5 flex justify-center">
+                    <div class="w-64 h-64 bg-dark-card rounded-full flex items-center justify-center border-4 border-accent shadow-2xl shadow-accent/50">
+                        <span class="text-6xl text-accent/80">👤</span>
+                    </div>
+                </div>
             </div>
-        </div>
-    </section>
-    <!-- Top Section -->
+        </section>
 
-    <!-- Photo -->
-    <div class="container px-5">
-        <div id="avatar">
-            <img class="shadow" src="static/assets/img/photo.png">
-        </div>
-    </div>
-    <!-- Photo -->
-    
-    <!-- Home -->
-    <section class="bg-gradient-primary-to-secondary-light mt5 md5" id="home">
-        <div class="container px-5">
-            <header>
-                <h2 id="home-subtitle"> </h2>
-                <!-- <span class="bi bi-list"></span> -->
-            </header>
-            <div class="main-body" id="home-md"></div>
-        </div>
-    </section>
-    <!-- Home -->
-
-    <!-- Publications -->
-    <section class="bg-gradient-primary-to-secondary-gray mt5 md5" id="publications">
-        <div class="container px-5">
-            <header>
-                <h2 id="publications-subtitle"><i class="bi bi-file-text-fill"></i>&nbsp;PUBLICATIONS</h2>
-            </header>
-            <div class="main-body" id="publications-md"></div>
-
-        </div>
-    </section>
-    <!-- Publications  -->
-
-    <!-- Awards -->
-    <section class="bg-gradient-primary-to-secondary-light mt5 md5" id="awards">
-        <div class="container px-5">
-            <header>
-                <h2 id="awards-subtitle"><i class="bi bi-award-fill"></i>AWARDS </h2>
-            </header>
-            <div class="main-body" id="awards-md"></div>
-
-        </div>
-    </section>
-    <!-- Awards -->
-
-
-    <!-- Footer-->
-    <footer class="bg-bottom text-center py-5">
-        <div class="container px-5">
-            <div class="text-white-50 small">
-                <div id="copyright-text" class="mb-2"></div>
-                <a id="github-link" href="https://github.com/senli1073">Github</a>
-                <span class="mx-1">&middot;</span>
-                <a id="license-link" href="https://github.com/senli1073/senli1073.github.io/blob/main/LICENSE">License</a>
+        <!-- 2. 教育经历 (Education) -->
+        <section id="education" class="border-t border-gray-800 pt-16">
+            <h2 class="text-4xl font-bold mb-10 highlight-text">教育经历</h2>
+            
+            <div class="space-y-8">
+                <!-- 教育经历 1 -->
+                <div class="bg-dark-card p-6 rounded-xl hover-card flex flex-col sm:flex-row justify-between items-start sm:items-center">
+                    <div>
+                        <h3 class="text-2xl font-semibold text-white">计算机科学与技术 (硕士)</h3>
+                        <p class="text-lg text-accent mt-1">未来科技大学</p>
+                        <p class="text-gray-400 mt-2">研究方向：深度学习模型优化、分布式系统</p>
+                    </div>
+                    <div class="sm:text-right mt-3 sm:mt-0">
+                        <span class="text-gray-500 text-sm">2023.09 - 至今</span>
+                        <p class="text-gray-300 font-medium">GPA: 4.0/4.0</p>
+                    </div>
+                </div>
+                
+                <!-- 教育经历 2 -->
+                <div class="bg-dark-card p-6 rounded-xl hover-card flex flex-col sm:flex-row justify-between items-start sm:items-center">
+                    <div>
+                        <h3 class="text-2xl font-semibold text-white">软件工程 (本科)</h3>
+                        <p class="text-lg text-accent mt-1">创新工程学院</p>
+                        <p class="text-gray-400 mt-2">荣誉：校级优秀毕业生、ACM 竞赛一等奖</p>
+                    </div>
+                    <div class="sm:text-right mt-3 sm:mt-0">
+                        <span class="text-gray-500 text-sm">2019.09 - 2023.07</span>
+                        <p class="text-gray-300 font-medium">专业排名: 1/150</p>
+                    </div>
+                </div>
             </div>
+        </section>
+
+        <!-- 3. 项目经历 (Projects) -->
+        <section id="projects" class="border-t border-gray-800 pt-16">
+            <h2 class="text-4xl font-bold mb-10 highlight-text">精选项目</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- 项目卡片 1 -->
+                <div class="bg-dark-card p-6 rounded-xl hover-card border-l-4 border-accent">
+                    <h3 class="text-2xl font-semibold mb-3 text-white">分布式高性能爬虫框架</h3>
+                    <p class="text-gray-400 mb-4 text-sm italic">技术栈: Python, Kafka, Redis, Docker</p>
+                    <p class="text-gray-300">
+                        设计并实现了一个基于消息队列的分布式爬虫系统，支持千万级网页的秒级抓取与去重。
+                        性能较传统爬虫提升 5 倍以上。
+                    </p>
+                    <a href="#" target="_blank" class="mt-4 inline-block text-accent hover:underline text-sm font-medium">查看详情 →</a>
+                </div>
+
+                <!-- 项目卡片 2 -->
+                <div class="bg-dark-card p-6 rounded-xl hover-card border-l-4 border-green-400">
+                    <h3 class="text-2xl font-semibold mb-3 text-white">React Native 社交 App</h3>
+                    <p class="text-gray-400 mb-4 text-sm italic">技术栈: React Native, Node.js, MongoDB</p>
+                    <p class="text-gray-300">
+                        全栈开发了一款跨平台社交应用，包含实时聊天、动态发布、用户认证等功能。
+                        后端采用 RESTful API 设计。
+                    </p>
+                    <a href="#" target="_blank" class="mt-4 inline-block text-green-400 hover:underline text-sm font-medium">查看详情 →</a>
+                </div>
+
+                <!-- 项目卡片 3 -->
+                <div class="bg-dark-card p-6 rounded-xl hover-card border-l-4 border-purple-400">
+                    <h3 class="text-2xl font-semibold mb-3 text-white">AI 驱动的医疗影像分割</h3>
+                    <p class="text-gray-400 mb-4 text-sm italic">技术栈: PyTorch, CUDA, UNet, Python</p>
+                    <p class="text-gray-300">
+                        基于 PyTorch 实现了 U-Net 模型的优化版本，用于 CT 影像的肿瘤区域自动分割，
+                        mIoU 评分达到行业领先水平。
+                    </p>
+                    <a href="#" target="_blank" class="mt-4 inline-block text-purple-400 hover:underline text-sm font-medium">查看详情 →</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. 科研经历 (Research) -->
+        <section id="research" class="border-t border-gray-800 pt-16">
+            <h2 class="text-4xl font-bold mb-10 highlight-text">科研与论文</h2>
+
+            <div class="space-y-6">
+                
+                <!-- 科研/论文条目 1 -->
+                <div class="bg-dark-card p-5 rounded-xl hover-card">
+                    <p class="text-lg font-semibold text-accent">论文：<span class="text-white">基于多头注意力机制的图神经网络优化</span></p>
+                    <p class="text-gray-400 mt-1">
+                        <span class="text-sm mr-4">期刊/会议: IEEE Transactions on AI (Submitted)</span>
+                        <span class="text-sm">贡献: 主要作者，负责模型设计与实验验证。</span>
+                    </p>
+                    <p class="text-gray-300 text-sm mt-2">
+                        提出了一种新型的注意力融合模块，显著提升了图结构数据的分类准确率和训练收敛速度。
+                    </p>
+                </div>
+
+                <!-- 科研/论文条目 2 -->
+                <div class="bg-dark-card p-5 rounded-xl hover-card">
+                    <p class="text-lg font-semibold text-accent">项目：<span class="text-white">高维数据降维的可视化工具</span></p>
+                    <p class="text-gray-400 mt-1">
+                        <span class="text-sm mr-4">导师: 王教授</span>
+                        <span class="text-sm">技术: T-SNE, UMAP, D3.js</span>
+                    </p>
+                    <p class="text-gray-300 text-sm mt-2">
+                        开发了一个交互式工具，支持实时调整降维参数并展示高维数据在不同流形上的投影效果，方便科研人员快速洞察数据结构。
+                    </p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- 页脚 (Footer) -->
+    <footer id="contact" class="bg-dark-card border-t border-gray-800 mt-16 py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h3 class="text-2xl font-bold highlight-text mb-4">保持联系</h3>
+            <p class="text-gray-400 mb-4">邮箱：your.email@example.com | 电话：(86) 123-4567-8901</p>
+            <div class="space-x-4 text-lg">
+                <!-- 社交媒体链接占位符 -->
+                <a href="#" target="_blank" class="text-gray-400 hover:text-accent transition duration-300">GitHub</a>
+                <span class="text-gray-600">|</span>
+                <a href="#" target="_blank" class="text-gray-400 hover:text-accent transition duration-300">LinkedIn</a>
+                <span class="text-gray-600">|</span>
+                <a href="#" target="_blank" class="text-gray-400 hover:text-accent transition duration-300">知乎</a>
+            </div>
+            <p class="mt-6 text-sm text-gray-600">
+                &copy; 2025 [您的名字]. All Rights Reserved. 基于 Tailwind CSS 设计。
+            </p>
         </div>
     </footer>
 
+    <script>
+        // 简单的JS，如果需要更复杂的交互可以在此添加
+        console.log("个人作品集网站已加载");
+    </script>
 </body>
-
 </html>
